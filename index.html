@@ -140,15 +140,32 @@
     el.addEventListener('touchstart', startDrag);
   }
 
+  // function enableEditing(el) {
+  //   el.ondblclick = function() {
+  //     el.contentEditable = true;
+  //     el.focus();
+  //   };
+  //   el.onblur = function() {
+  //     el.contentEditable = false;
+  //   };
+  // }
+
   function enableEditing(el) {
-    el.ondblclick = function() {
-      el.contentEditable = true;
-      el.focus();
-    };
-    el.onblur = function() {
-      el.contentEditable = false;
-    };
+  function startEditing() {
+    el.contentEditable = true;
+    el.focus();
   }
+
+  function stopEditing() {
+    el.contentEditable = false;
+  }
+
+  el.addEventListener('dblclick', startEditing);
+  el.addEventListener('touchstart', startEditing, { passive: true }); // يعمل عند اللمس على الهاتف
+  el.addEventListener('click', startEditing);
+
+  el.addEventListener('blur', stopEditing);
+}
   </script>
 </body>
 </html>
