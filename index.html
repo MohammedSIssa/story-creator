@@ -32,7 +32,7 @@
       .bg-img { background: url('./image.jpg');}
       .bg-watermelon { background: url('./watermelon.jpg'); }
       
-      p,h1,h2,h3,h4,h5,h6 { text-wrap: pretty; line-height: 1.5;}
+      p,h1,h2,h3,h4,h5,h6 { text-wrap: pretty; line-height: 1.5; font-family: 'AppleEmoji', 'ReadexPro', sans-serif !important;}
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -90,11 +90,17 @@
       dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
     }
 
+    function isMobile() {
+     return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+
+
     function addTextBox(tag) {
       const container = document.getElementById('storyContainer');
       const textBox = document.createElement(tag);
       textBox.classList.add('textbox');
-      textBox.innerText = `نص`;
+      textBox.innerText = isMobile() ? '' : "نص جديد";
       textBox.style.left = '50px';
       textBox.style.top = '50px';
       container.appendChild(textBox);
