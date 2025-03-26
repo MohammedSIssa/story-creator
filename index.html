@@ -40,6 +40,11 @@
 </head>
 <body>
   <div class="container bg-pink" id="storyContainer">
+    <div id="customBgPopup" class="popup">
+      <input type="text" id="imgurUrlInput" placeholder="Enter Imgur Image URL">
+      <button onclick="setCustomBackground()">Apply</button>
+      <button onclick="toggleCustomBgPopup()">Close</button>
+    </div>
       <button class="add-text" onclick="toggleDropdown()" style="font-size: 24px; font-family: system-ui, sans-serif !important;">
         <img src="./text.svg" alt="">
       </button>
@@ -62,7 +67,7 @@
         <button onclick="changeBackground(3)">🌚</button>
         <button onclick="changeBackground(4)">🍉</button>
         <button onclick="changeBackground(5)">🌃</button>
-        <button onclick="changeBackground(6)">🖼️</button>
+        <button onclick="toggleCustomBgPopup()">Custom</button>
     </div>
     <button class="font-family-btn" onclick="toggleFontDropdown()">
       <img src="./font.svg" alt="">
@@ -84,7 +89,7 @@
       { className: "bg-default" },
       { className: "bg-watermelon"},
       { className: "bg-sky"},
-      { className: "bg-img"},
+      { className: ""},
     ];
 
     function toggleBgDropdown() {
@@ -212,6 +217,27 @@
   }
 
   document.getElementById("storyContainer").addEventListener("dblclick", saveContainerAsImage);
+
+  function toggleCustomBgPopup() {
+  const popup = document.getElementById('customBgPopup');
+  popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function setCustomBackground() {
+  const input = document.getElementById('imgurUrlInput').value.trim();
+  const container = document.getElementById('storyContainer');
+
+  if (input.startsWith("http") && (input.includes("imgur.com") || input.includes(".jpg") || input.includes(".png"))) {
+    container.style.background = `url('${input}')`;
+    container.style.backgroundSize = "cover";
+    container.style.backgroundPosition = "center";
+    container.style.backgroundRepeat = "no-repeat";
+    toggleCustomBgPopup(); // Hide popup after applying
+  } else {
+    alert("Please enter a valid Imgur image URL!"); // Error handling
+  }
+}
+
 
   </script>
 </body>
