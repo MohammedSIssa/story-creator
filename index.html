@@ -166,23 +166,23 @@
   // }
 
   function enableEditing(el) {
-  function startEditing() {
-    el.contentEditable = true;
-    el.focus();
+    function startEditing() {
+      el.contentEditable = true;
+      el.focus();
+    }
+  
+    function stopEditing() {
+      el.contentEditable = false;
+    }
+  
+    el.addEventListener('dblclick', startEditing);
+    el.addEventListener('touchstart', startEditing, { passive: true }); // يعمل عند اللمس على الهاتف
+    el.addEventListener('click', startEditing);
+  
+    el.addEventListener('blur', stopEditing);
   }
 
-  function stopEditing() {
-    el.contentEditable = false;
-  }
-
-  el.addEventListener('dblclick', startEditing);
-  el.addEventListener('touchstart', startEditing, { passive: true }); // يعمل عند اللمس على الهاتف
-  el.addEventListener('click', startEditing);
-
-  el.addEventListener('blur', stopEditing);
-}
-
-function toggleFontDropdown() {
+  function toggleFontDropdown() {
     const fontDropdown = document.getElementById('fontDropdown');
     fontDropdown.style.display = fontDropdown.style.display === 'flex' ? 'none' : 'flex';
   }
