@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Story Clone</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <style>
       * { box-sizing: border-box; }
       button {z-index: 1000; font-family: 'ReadexPro', sans-serif; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 4px 10px rgba(1,1,1,0.5));}
@@ -170,15 +172,15 @@
       el.contentEditable = true;
       el.focus();
     }
-  
+
     function stopEditing() {
       el.contentEditable = false;
     }
-  
+
     el.addEventListener('dblclick', startEditing);
     el.addEventListener('touchstart', startEditing, { passive: true }); // يعمل عند اللمس على الهاتف
     el.addEventListener('click', startEditing);
-  
+
     el.addEventListener('blur', stopEditing);
   }
 
@@ -197,12 +199,32 @@
 
   document.addEventListener("keydown", function(event) {
     if (event.code === "Space") {
-        event.preventDefault(); // Prevents scrolling down on spacebar press
-        document.querySelectorAll("button").forEach(button => {
-            button.style.display = button.style.display === "none" ? "block" : "none";
-        });
+      event.preventDefault(); // Prevents scrolling down on spacebar press
+      document.querySelectorAll("button").forEach(button => {
+        button.style.display = button.style.display === "none" ? "block" : "none";
+      });
     }
-});
+  });
+  function saveContainerAsImage() {
+    document.querySelectorAll("button").forEach(button => {
+      button.style.display = button.style.display === "none" ? "block" : "none";
+    });
+    html2canvas(document.getElementById("storyContainer"), {
+      useCORS: true,  // Allows cross-origin images
+      allowTaint: false,  // Prevents tainting from untrusted sources
+      backgroundColor: null  // Preserves transparency if needed
+    }).then(canvas => {
+      let link = document.createElement("a");
+      link.download = "screenshot.jpg";  // Set file name
+      link.href = canvas.toDataURL("image/jpeg");  // Convert to JPG
+      link.click();  // Trigger download
+    }).catch(error => {
+        console.error("Error capturing image:", error);
+    });
+  }
+
+  document.getElementById("storyContainer").addEventListener("dblclick", saveContainerAsImage);
+
   </script>
 </body>
 </html>
