@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Story Clone</title>
+    <style>
+      * { box-sizing: border-box; }
+      button {z-index: 1000; font-family: 'ReadexPro', sans-serif !important; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 4px 10px rgba(1,1,1,0.5));}
+      body { font-family: 'ReadexPro', sans-serif !important; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: black; }
+      .container { width: 383px; height: 680px; background: white; position: relative; border-radius: 15px; overflow: hidden; background-position: center !important; background-size: cover !important; object-fit: cover !important; }
+      .add-text { position: absolute; top: 10px; left: 10px; background-color: transparent;width: 50px; height: 50px; cursor: pointer; border-radius: 50%; border: 0; font-family: 'ReadexPro', sans-serif !important; }
+      .textbox { padding: 10px 22px !important; text-align: center; position: absolute; background: rgba(20, 20, 20, 0.62); color:white; padding: 5px; border-radius: 5px; cursor: grab; min-width: 50px; max-width: 90% !important; min-height: 20px; font-family: 'ReadexPro', sans-serif !important; }
+      .dropdown { position: absolute; top: 70px; left: 10px; background: white; border: 1px solid #ccc; display: none; flex-direction: column; gap: 5px;}
+      .dropdown button { background: none; border: none; padding: 5px; cursor: pointer; text-align: left; }
+      .dropdown button:hover { background: #ddd; }
+      .change-bg { position: absolute; top: 10px; right: 10px; width: 50px; height: 50px; border-radius: 50%; border: 0; background-color: transparent; cursor: pointer;}
+      .bg-dropdown { position: absolute; width: 50px; top: 70px; right: 10px; background: white; border: 1px solid #ccc; display: none; flex-direction: column; gap: 5px; }
+      .bg-dropdown button { background: none; border: none; padding: 5px; cursor: pointer; text-align: left; }
+      .bg-dropdown button:hover { background: #ddd; }
+      .bg-default { background: black; }
+      .bg-gradient { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+      .bg-blue { background: linear-gradient(45deg, #56ccf2, #2f80ed); }
+      .bg-light { background: #eee; color: #222; }
+      .bg-sky { background: url('./sky.jpg'); }
+      .bg-img { background: url('./image.jpg');}
+      .bg-watermelon { background: url('./watermelon.jpg'); }
+      button img { width: 50px; height: 50px;}
+      .dropdown, .bg-dropdown { z-index: 1000; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);}
+      .dropdown button, .bg-dropdown button {background: rgba(255,255,255,0.2); border: none; padding: 10px; cursor: pointer; text-align: left; color: white; font-size: 16px; border-radius: 5px; transition: background 0.3s ease; }
+      .dropdown button:hover, .bg-dropdown button:hover {background: rgba(255,255,255,0.3);}
+
+      p,h1,h2,h3,h4,h5,h6 { text-wrap: pretty;}
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container bg-default" id="storyContainer">
+      <button class="add-text" onclick="toggleDropdown()" style="font-size: 24px; font-family: system-ui, sans-serif !important;">
+        <img src="./text.svg" alt="">
+      </button>
+      <div class="dropdown" id="dropdown">
+        <button onclick="addTextBox('h1')" style="font-size: 32px;">نص 1</button>
+        <button onclick="addTextBox('h2')" style="font-size: 24px;">نص 2</button>
+        <button onclick="addTextBox('h3')" style="font-size: 20px;">نص 3</button>
+        <button onclick="addTextBox('h4')" style="font-size: 16px;">نص 4</button>
+        <button onclick="addTextBox('h5')" style="font-size: 14px;">نص 5</button>
+        <button onclick="addTextBox('h6')" style="font-size: 12px;">نص 6</button>
+        <button onclick="addTextBox('p')" style="font-size: 10px;">نص 7</button>
+      </div>
+      <button class="change-bg" onclick="toggleBgDropdown()">
+        <img src="./img.svg" alt="">
+      </button>
+      <div class="bg-dropdown" id="bgDropdown">
+        <button onclick="changeBackground(0)">🤍</button>
+        <button onclick="changeBackground(1)">🩷</button>
+        <button onclick="changeBackground(2)">💙</button>
+        <button onclick="changeBackground(3)">🌚</button>
+        <button onclick="changeBackground(4)">🍉</button>
+        <button onclick="changeBackground(5)">🌃</button>
+        <button onclick="changeBackground(6)">🖼️</button>
+    </div>
+  </div>
+  <script>
+    const backgrounds = [
+      { className: "bg-light" },
+      { className: "bg-gradient" },
+      { className: "bg-blue" },
+      { className: "bg-default" },
+      { className: "bg-watermelon"},
+      { className: "bg-sky"},
+      { className: "bg-img"},
+    ];
+
+    function toggleBgDropdown() {
+      const bgDropdown = document.getElementById('bgDropdown');
+      bgDropdown.style.display = bgDropdown.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function changeBackground(index) {
+      const container = document.getElementById('storyContainer');
+      container.className = `container ${backgrounds[index].className}`;
+      toggleBgDropdown();
+    }
+
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdown');
+      dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function addTextBox(tag) {
+      const container = document.getElementById('storyContainer');
+      const textBox = document.createElement(tag);
+      textBox.classList.add('textbox');
+      textBox.innerText = `نص`;
+      textBox.style.left = '50px';
+      textBox.style.top = '50px';
+      container.appendChild(textBox);
+      toggleDropdown();
+      dragElement(textBox);
+      enableEditing(textBox);
+  }
+
+    function dragElement(el) {
+      let startX, startY, initialX, initialY;
+      
+    function startDrag(event) {
+      event.preventDefault();
+      startX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
+      startY = event.type.includes('touch') ? event.touches[0].clientY : event.clientY;
+      initialX = el.offsetLeft;
+      initialY = el.offsetTop;
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', stopDrag);
+      document.addEventListener('touchmove', drag);
+      document.addEventListener('touchend', stopDrag);
+    }
+      
+    function drag(event) {
+      let clientX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
+      let clientY = event.type.includes('touch') ? event.touches[0].clientY : event.clientY;
+      
+      let deltaX = clientX - startX;
+      let deltaY = clientY - startY;
+      
+      el.style.left = `${initialX + deltaX}px`;
+      el.style.top = `${initialY + deltaY}px`;
+    }
+    
+    function stopDrag() {
+      document.removeEventListener('mousemove', drag);
+      document.removeEventListener('mouseup', stopDrag);
+      document.removeEventListener('touchmove', drag);
+      document.removeEventListener('touchend', stopDrag);
+    }
+    
+    el.addEventListener('mousedown', startDrag);
+    el.addEventListener('touchstart', startDrag);
+  }
+
+  function enableEditing(el) {
+    el.ondblclick = function() {
+      el.contentEditable = true;
+      el.focus();
+    };
+    el.onblur = function() {
+      el.contentEditable = false;
+    };
+  }
+  </script>
+</body>
+</html>
