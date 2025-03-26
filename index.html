@@ -34,6 +34,9 @@
       .bg-sky { background: url('https://i.imgur.com/1JMKidV.jpeg'); }
       .bg-img { background: url('./image.jpg'); }
       .bg-watermelon { background: url('https://i.imgur.com/IMvmQMM.jpeg');}
+
+      #bgMovable { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; background-repeat: no-repeat; cursor: grab; user-select: none;}
+      #bgMovable:active { cursor: grabbing; }
       
       p,h1,h2,h3,h4,h5,h6 { text-wrap: pretty; line-height: 1.5;}
     </style>
@@ -41,6 +44,7 @@
 </head>
 <body>
   <div class="container bg-pink" id="storyContainer">
+    <div id="bgMovable"></div>
     <div id="customBgPopup" class="popup">
       <input type="text" id="imgurUrlInput" placeholder="Enter Imgur Image URL">
       <button onclick="setCustomBackground()">Apply</button>
@@ -226,18 +230,69 @@
 
 function setCustomBackground() {
   const input = document.getElementById('imgurUrlInput').value.trim();
-  const container = document.getElementById('storyContainer');
+  const bgMovable = document.getElementById('bgMovable');
 
   if (input.startsWith("http") && (input.includes("imgur.com") || input.includes(".jpg") || input.includes(".png"))) {
-    container.style.background = `url('${input}')`;
-    container.style.backgroundSize = "cover";
-    container.style.backgroundPosition = "center";
-    container.style.backgroundRepeat = "no-repeat";
-    toggleCustomBgPopup(); // Hide popup after applying
+    bgMovable.style.backgroundImage = `url('${input}')`;
+    toggleCustomBgPopup(); // Hide popup
   } else {
-    alert("Please enter a valid Imgur image URL!"); // Error handling
+    alert("Please enter a valid Imgur image URL!");
   }
 }
+
+function setCustomBackground() {
+  const input = document.getElementById('imgurUrlInput').value.trim();
+  const bgMovable = document.getElementById('bgMovable');
+
+  if (input.startsWith("http") && (input.includes("imgur.com") || input.includes(".jpg") || input.includes(".png"))) {
+    bgMovable.style.backgroundImage = `url('${input}')`;
+    toggleCustomBgPopup(); // Hide popup
+  } else {
+    alert("Please enter a valid Imgur image URL!");
+  }
+}
+
+// Make background draggable
+function enableBgDragging() {
+  const bg = document.getElementById('bgMovable');
+  let startX, startY, initialX, initialY;
+
+  function startDrag(event) {
+    event.preventDefault();
+    startX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
+    startY = event.type.includes('touch') ? event.touches[0].clientY : event.clientY;
+    initialX = parseInt(bg.style.backgroundPositionX) || 0;
+    initialY = parseInt(bg.style.backgroundPositionY) || 0;
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('touchmove', drag);
+    document.addEventListener('touchend', stopDrag);
+  }
+
+  function drag(event) {
+    let clientX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
+    let clientY = event.type.includes('touch') ? event.touches[0].clientY : event.clientY;
+
+    let deltaX = clientX - startX;
+    let deltaY = clientY - startY;
+
+    bg.style.backgroundPositionX = `${initialX + deltaX}px`;
+    bg.style.backgroundPositionY = `${initialY + deltaY}px`;
+  }
+
+  function stopDrag() {
+    document.removeEventListener('mousemove', drag);
+    document.removeEventListener('mouseup', stopDrag);
+    document.removeEventListener('touchmove', drag);
+    document.removeEventListener('touchend', stopDrag);
+  }
+
+  bg.addEventListener('mousedown', startDrag);
+  bg.addEventListener('touchstart', startDrag);
+}
+
+// Call function to activate dragging
+enableBgDragging();
 
 
   </script>
