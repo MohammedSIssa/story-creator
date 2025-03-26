@@ -7,86 +7,58 @@
 }
 
 @font-face {
-  font-family: 'AppleEmoji';
-  src: url('./AppleEmoji.ttf');
+  font-family: 'Rubik';
+  src: url('./Rubik.ttf');
   font-style: normal;
   font-weight: 300 700;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-  text-wrap: pretty;
+.font-family-btn {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.image {
-  background: url('./image.jpg');
+.font-dropdown {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: none;
+  flex-direction: column;
+  border-radius: 8px;
+  z-index: 100;
 }
 
-.sky {
-  background: url('./sky.jpg');
+.font-dropdown button {
+  background: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  width: 100%;
+  max-height: 50px;
+  transition: background 0.3s ease;
+  border-bottom: 1px solid rgba(222, 222, 222, 0.6);
 }
 
-.watermelon {
-  background: url('./watermelon.jpg');
+.font-dropdown button:last-child {
+  border: 0;
 }
 
-.bpattern {
-  background: url('./black-pattern.jpg');
-}
-
-.no-bg {
-  background-color: transparent !important;
-}
-
-.semi-bg-b {
-  background-color: rgba(22,22,22,0.75) !important;
-  color: white !important;
-}
-
-.semi-bg-w {
-  background-color: rgba(222,222,222,0.55) !important;
-  color: black !important;
-}
-
-.yellow-1 {
-  background-color: #d7cc91 !important;
-  color: #5c5014 !important;
-}
-
-.yellow-2 {
-  background-color: #5c5014 !important;
-  color: #ffeb8a !important;
-}
-
-.red-1 {
-  background-color: #f3a0b0 !important;
-  color: black !important;
-}
-
-.red-2 {
-  color: pink !important;
-  background-color: #333 !important;
-}
-
-.purple-1 {
-  background: linear-gradient(#4f26a2, #8758e3) !important;
-  color: white !important;
-}
-
-.purple-2 {
-  background-color: #caafff !important;
-  color: #4f26a2 !important;
-}
-
-.black {
-  background-color: black !important;
-  color: white !important;
-}
-
-.white {
-  background-color: white !important;
-  color: black !important;
-}
-
-.bordered {
-  border: 3px solid white !important;
+.font-dropdown button:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
