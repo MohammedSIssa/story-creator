@@ -27,7 +27,7 @@
       .dropdown button:hover, .bg-dropdown button:hover {background: rgba(255,255,255,0.2);}
 
       .bg-default { background: black; }
-      .bg-gradient { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+      .bg-pink { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
       .bg-blue { background: linear-gradient(45deg, #56ccf2, #2f80ed); }
       .bg-light { background: #eee; color: #222; }
       .bg-sky { background: url('./sky.jpg'); }
@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container bg-default" id="storyContainer">
+  <div class="container bg-pink" id="storyContainer">
       <button class="add-text" onclick="toggleDropdown()" style="font-size: 24px; font-family: system-ui, sans-serif !important;">
         <img src="./text.svg" alt="">
       </button>
@@ -79,7 +79,7 @@
   <script>
     const backgrounds = [
       { className: "bg-light" },
-      { className: "bg-gradient" },
+      { className: "bg-pink" },
       { className: "bg-blue" },
       { className: "bg-default" },
       { className: "bg-watermelon"},
@@ -202,7 +202,7 @@
     html2canvas(document.getElementById("storyContainer"), {
       useCORS: true,  // Allows cross-origin images
       allowTaint: false,  // Prevents tainting from untrusted sources
-      backgroundColor: null  // Preserves transparency if needed
+      backgroundColor: null // Preserves transparency if needed
     }).then(canvas => {
       let link = document.createElement("a");
       link.download = "screenshot.jpg";  // Set file name
