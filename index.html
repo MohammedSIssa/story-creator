@@ -30,9 +30,9 @@
       .bg-pink { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
       .bg-blue { background: linear-gradient(45deg, #56ccf2, #2f80ed); }
       .bg-light { background: #eee; color: #222; }
-      .bg-sky { background: url('./sky.jpg'); }
-      .bg-img { background: url('./image.jpg');}
-      .bg-watermelon { background: url('./watermelon.jpg'); }
+      .bg-sky { background: url('https://i.imgur.com/1JMKidV.jpeg'); }
+      .bg-img { background: url('./image.jpg'); }
+      .bg-watermelon { background: url('https://i.imgur.com/IMvmQMM.jpeg');}
       
       p,h1,h2,h3,h4,h5,h6 { text-wrap: pretty; line-height: 1.5;}
     </style>
@@ -187,13 +187,11 @@
     toggleFontDropdown();
   }
 
-  document.addEventListener("keydown", function(event) {
-    if (event.code === "Space") {
+  document.addEventListener("contextmenu", function(event) {
       event.preventDefault(); // Prevents scrolling down on spacebar press
       document.querySelectorAll("button").forEach(button => {
         button.style.display = button.style.display === "none" ? "block" : "none";
-      });
-    }
+    });
   });
   function saveContainerAsImage() {
     document.querySelectorAll("button").forEach(button => {
