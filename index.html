@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Story Creator</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
     <style>
@@ -216,11 +215,6 @@
         display: block !important;
       "
     >
-      <img
-        src="./save.svg"
-        alt=""
-        style="width: 25px !important; cursor: pointer"
-      />
     </button>
     <div class="container bg-pink" id="storyContainer">
       <div id="bgMovable"></div>
@@ -418,32 +412,6 @@
           }
         });
       });
-      function saveContainerAsImage() {
-        document.querySelectorAll("button").forEach((button) => {
-          if (!button.classList.contains("saveBtn")) {
-            button.style.display = "none";
-          }
-        });
-        html2canvas(document.getElementById("storyContainer"), {
-          useCORS: true, // Allows cross-origin images
-          allowTaint: false, // Prevents tainting from untrusted sources
-          backgroundColor: null, // Preserves transparency if needed
-        })
-          .then((canvas) => {
-            let link = document.createElement("a");
-            link.download = "screenshot.jpg"; // Set file name
-            link.href = canvas.toDataURL("image/jpeg"); // Convert to JPG
-            link.click(); // Trigger download
-          })
-          .catch((error) => {
-            console.error("Error capturing image:", error);
-          });
-      }
-
-      document
-        .getElementById("save-img-btn")
-        .addEventListener("click", saveContainerAsImage);
-
       function toggleCustomBgPopup() {
         const popup = document.getElementById("customBgPopup");
         popup.style.display = popup.style.display === "flex" ? "none" : "flex";
