@@ -1,71 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Story Creator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
     <style>
-      * { box-sizing: border-box; }
-      button {z-index: 1000; font-family: 'ReadexPro', sans-serif; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 4px 10px rgba(1,1,1,0.5));}
-      button img { width: 50px !important; height: 50px !important; }
-      body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: black; }
-      .container { width: 383px; height: 680px; background: white; position: relative; border-radius: 15px; overflow: hidden; background-position: center !important; background-size: cover !important; object-fit: cover !important; }
-      
-      .add-text { position: absolute; top: 10px; left: 10px; background-color: transparent;width: 50px; height: 50px; cursor: pointer; border-radius: 50%; border: 0; font-family: 'ReadexPro', sans-serif ; }
-      .textbox { direction: rtl; padding: 10px 22px !important; text-align: center; position: absolute; background: rgba(20, 20, 20, 0.62); color:white; padding: 5px; border-radius: 5px; cursor: grab; min-width: 50px; max-width: 90% !important; min-height: 20px; font-family: 'ReadexPro', sans-serif; }
-      .change-bg { position: absolute; top: 10px; right: 10px; width: 50px; height: 50px; border-radius: 50%; border: 0; background-color: transparent; cursor: pointer;}
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      button {
+        z-index: 1000;
+        font-family: "ReadexPro", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        filter: drop-shadow(0 4px 10px rgba(1, 1, 1, 0.5));
+      }
+      button img {
+        width: 50px !important;
+        height: 50px !important;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100dvh;
+        margin: 0;
+        background: black;
+        padding: 20px;
+      }
+      .container {
+        /* width: 383px; height: 680px; */
+        height: 90dvh;
+        width: auto;
+        aspect-ratio: 9 / 16;
+        background: white;
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        background-position: center !important;
+        background-size: cover !important;
+        object-fit: cover !important;
+      }
 
-      .dropdown { position: absolute; top: 70px; left: 10px; background: white; border: 1px solid #ccc; display: none; flex-direction: column;}
-      .dropdown button { background: none; border: none; padding: 5px; cursor: pointer; text-align: left; }
-      .bg-dropdown { position: absolute; width: 50px; top: 70px; right: 10px; background: white; border: 1px solid #ccc; display: none; flex-direction: column; }
-      .bg-dropdown button { background: none; border: none; padding: 5px; cursor: pointer; text-align: left; }
-      .dropdown, .bg-dropdown { z-index: 1000; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 4px 10px rgba(0,0,0,0.2); border-radius: 8px;}
-      .dropdown button, .bg-dropdown button {background: transparent; border: none; padding: 10px; cursor: pointer; text-align: center; color: white; font-size: 16px; width: 100%; transition: background 0.3s ease; border-bottom: 1px solid rgba(222,222,222,0.6);}
-      .dropdown button:last-child, .bg-dropdown button:last-child {border: 0;}
-      .dropdown button:hover, .bg-dropdown button:hover {background: rgba(255,255,255,0.2);}
+      .add-text {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: transparent;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        border-radius: 50%;
+        border: 0;
+        font-family: "ReadexPro", sans-serif;
+      }
+      .textbox {
+        backdrop-filter: blur(10px);
+        border: 1px solid #a2a2a2;
+        direction: rtl;
+        padding: 10px 22px !important;
+        text-align: center;
+        position: absolute;
+        background: rgba(50, 50, 50, 0.27);
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: grab;
+        min-width: 100px;
+        max-width: 90% !important;
+        min-height: 20px;
+        font-family: "Rubik", sans-serif;
+      }
+      .change-bg {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+      }
 
-      .bg-default { background: black; }
-      .bg-pink { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
-      .bg-blue { background: linear-gradient(45deg, #56ccf2, #2f80ed); }
-      .bg-light { background: #eee; color: #222; }
-      .bg-sky { background: url('https://i.imgur.com/1JMKidV.jpeg'); }
-      .bg-img { background: url('./image.jpg'); }
-      .bg-watermelon { background: url('https://i.imgur.com/IMvmQMM.jpeg');}
+      .dropdown {
+        position: absolute;
+        top: 70px;
+        left: 10px;
+        background: white;
+        border: 1px solid #ccc;
+        display: none;
+        flex-direction: column;
+      }
+      .dropdown button {
+        background: none;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        text-align: left;
+      }
+      .bg-dropdown {
+        position: absolute;
+        width: 50px;
+        top: 70px;
+        right: 10px;
+        background: white;
+        border: 1px solid #ccc;
+        display: none;
+        flex-direction: column;
+      }
+      .bg-dropdown button {
+        background: none;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        text-align: left;
+      }
+      .dropdown,
+      .bg-dropdown {
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+      }
+      .dropdown button,
+      .bg-dropdown button {
+        background: transparent;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+        width: 100%;
+        transition: background 0.3s ease;
+        border-bottom: 1px solid rgba(222, 222, 222, 0.6);
+      }
+      .dropdown button:last-child,
+      .bg-dropdown button:last-child {
+        border: 0;
+      }
+      .dropdown button:hover,
+      .bg-dropdown button:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
 
-      #bgMovable { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; background-repeat: no-repeat; cursor: grab; user-select: none;}
-      #bgMovable:active { cursor: grabbing; }
-      
-      p,h1,h2,h3,h4,h5,h6 { text-wrap: pretty; line-height: 1.5;}
+      .bg-default {
+        background: black;
+      }
+      .bg-pink {
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      }
+      .bg-blue {
+        background: linear-gradient(45deg, #56ccf2, #2f80ed);
+      }
+      .bg-light {
+        background: #eee;
+        color: #222;
+      }
+      .bg-sky {
+        background: url("https://i.imgur.com/1JMKidV.jpeg");
+      }
+      .bg-img {
+        background: url("./image.jpg");
+      }
+      .bg-watermelon {
+        background: url("https://i.imgur.com/IMvmQMM.jpeg");
+      }
+
+      #bgMovable {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: grab;
+        user-select: none;
+        border-radius: 12px;
+      }
+      #bgMovable:active {
+        cursor: grabbing;
+      }
+
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        text-wrap: pretty;
+        line-height: 1.5;
+      }
     </style>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container bg-pink" id="storyContainer">
-    <div id="bgMovable"></div>
-    <div id="customBgPopup" class="popup">
-      <input type="text" id="imgurUrlInput" placeholder="Enter Imgur Image URL">
-      <button onclick="setCustomBackground()">Apply</button>
-      <button onclick="toggleCustomBgPopup()">Close</button>
-    </div>
-      <button class="add-text" onclick="toggleDropdown()" style="font-size: 24px; font-family: system-ui, sans-serif !important;">
-        <img src="./text.svg" alt="">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button
+      class="saveBtn"
+      id="save-img-btn"
+      style="
+        position: absolute;
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: transparent;
+        border: 0;
+        display: block !important;
+      "
+    >
+      <img
+        src="./save.svg"
+        alt=""
+        style="width: 25px !important; cursor: pointer"
+      />
+    </button>
+    <div class="container bg-pink" id="storyContainer">
+      <div id="bgMovable"></div>
+      <div id="customBgPopup" class="popup">
+        <input
+          type="text"
+          id="imgurUrlInput"
+          placeholder="Enter Imgur Image URL"
+        />
+        <button onclick="setCustomBackground()">Apply</button>
+        <button onclick="toggleCustomBgPopup()">Close</button>
+      </div>
+      <button
+        class="add-text"
+        onclick="toggleDropdown()"
+        style="font-size: 24px; font-family: system-ui, sans-serif !important"
+      >
+        <img src="./text.svg" alt="" />
       </button>
       <div class="dropdown" id="dropdown">
-        <button onclick="addTextBox('h1')" style="font-size: 32px;">نص 1</button>
-        <button onclick="addTextBox('h2')" style="font-size: 24px;">نص 2</button>
-        <button onclick="addTextBox('h3')" style="font-size: 20px;">نص 3</button>
-        <button onclick="addTextBox('h4')" style="font-size: 16px;">نص 4</button>
-        <button onclick="addTextBox('h5')" style="font-size: 14px;">نص 5</button>
-        <button onclick="addTextBox('h6')" style="font-size: 12px;">نص 6</button>
-        <button onclick="addTextBox('p')" style="font-size: 10px;">نص 7</button>
+        <button onclick="addTextBox('h1')" style="font-size: 32px">نص 1</button>
+        <button onclick="addTextBox('h2')" style="font-size: 24px">نص 2</button>
+        <button onclick="addTextBox('h3')" style="font-size: 20px">نص 3</button>
+        <button onclick="addTextBox('h4')" style="font-size: 16px">نص 4</button>
+        <button onclick="addTextBox('h5')" style="font-size: 14px">نص 5</button>
+        <button onclick="addTextBox('h6')" style="font-size: 12px">نص 6</button>
+        <button onclick="addTextBox('p')" style="font-size: 10px">نص 7</button>
       </div>
       <button class="change-bg" onclick="toggleBgDropdown()">
-        <img src="./img.svg" alt="">
+        <img src="./img.svg" alt="" />
       </button>
-      <div class="bg-dropdown" id="bgDropdown" style="width: fit-content;">
+      <div class="bg-dropdown" id="bgDropdown" style="width: fit-content">
         <button onclick="changeBackground(0)">🤍</button>
         <button onclick="changeBackground(1)">🩷</button>
         <button onclick="changeBackground(2)">💙</button>
@@ -73,228 +261,294 @@
         <button onclick="changeBackground(4)">🍉</button>
         <button onclick="changeBackground(5)">🌃</button>
         <button onclick="toggleCustomBgPopup()">Custom</button>
-    </div>
-    <button class="font-family-btn" onclick="toggleFontDropdown()">
-      <img src="./font.svg" alt="">
-    </button>
-    <div class="font-dropdown" id="fontDropdown">
-      <button onclick="changeFont('ReadexPro, sans-serif')" style="font-family: 'ReadexPro' !important; font-size: 18px; font-weight: 500;">
-        ريدكس برو
+      </div>
+      <button class="font-family-btn" onclick="toggleFontDropdown()">
+        <img src="./font.svg" alt="" />
       </button>
-      <button onclick="changeFont('Rubik, sans-serif')" style="font-family: Rubik !important; font-size: 18px; font-weight: 500;">
-        روبيك
-      </button>
+      <div class="font-dropdown" id="fontDropdown">
+        <button
+          onclick="changeFont('ReadexPro, sans-serif')"
+          style="
+            font-family: 'ReadexPro' !important;
+            font-size: 18px;
+            font-weight: 500;
+          "
+        >
+          ريدكس برو
+        </button>
+        <button
+          onclick="changeFont('Rubik, sans-serif')"
+          style="
+            font-family: Rubik !important;
+            font-size: 18px;
+            font-weight: 500;
+          "
+        >
+          روبيك
+        </button>
+      </div>
     </div>
-  </div>
-  <script>
-    const backgrounds = [
-      { className: "bg-light" },
-      { className: "bg-pink" },
-      { className: "bg-blue" },
-      { className: "bg-default" },
-      { className: "bg-watermelon"},
-      { className: "bg-sky"},
-      { className: ""},
-    ];
+    <script>
+      const backgrounds = [
+        { className: "bg-light" },
+        { className: "bg-pink" },
+        { className: "bg-blue" },
+        { className: "bg-default" },
+        { className: "bg-watermelon" },
+        { className: "bg-sky" },
+        { className: "" },
+      ];
 
-    function toggleBgDropdown() {
-      const bgDropdown = document.getElementById('bgDropdown');
-      bgDropdown.style.display = bgDropdown.style.display === 'flex' ? 'none' : 'flex';
-    }
+      function toggleBgDropdown() {
+        const bgDropdown = document.getElementById("bgDropdown");
+        bgDropdown.style.display =
+          bgDropdown.style.display === "flex" ? "none" : "flex";
+      }
 
-    function changeBackground(index) {
-      const container = document.getElementById('storyContainer');
-      container.className = `container ${backgrounds[index].className}`;
-      toggleBgDropdown();
-    }
+      function changeBackground(index) {
+        const container = document.getElementById("storyContainer");
+        container.className = `container ${backgrounds[index].className}`;
+        toggleBgDropdown();
+      }
 
-    function toggleDropdown() {
-      const dropdown = document.getElementById('dropdown');
-      dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
-    }
+      function toggleDropdown() {
+        const dropdown = document.getElementById("dropdown");
+        dropdown.style.display =
+          dropdown.style.display === "flex" ? "none" : "flex";
+      }
 
-    function isMobile() {
-     return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    }
+      function isMobile() {
+        return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      }
 
-    function addTextBox(tag) {
-      const container = document.getElementById('storyContainer');
-      const textBox = document.createElement(tag);
-      textBox.classList.add('textbox');
-      textBox.innerText = isMobile() ? '' : "نص جديد";
-      textBox.style.left = '50px';
-      textBox.style.top = '50px';
-      container.appendChild(textBox);
-      toggleDropdown();
-      dragElement(textBox);
-      enableEditing(textBox);
-  }
+      function addTextBox(tag) {
+        const container = document.getElementById("storyContainer");
+        const textBox = document.createElement(tag);
+        textBox.classList.add("textbox");
+        textBox.innerText = isMobile() ? "" : "نص جديد";
+        textBox.style.left = "5%";
+        textBox.style.top = "80px";
+        container.appendChild(textBox);
+        toggleDropdown();
+        dragElement(textBox);
+        enableEditing(textBox);
+      }
 
-    function dragElement(el) {
-      let startX, startY, initialX, initialY;
-      
-    function startDrag(event) {
-      event.preventDefault();
-      startX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
-      startY = event.type.includes('touch') ? event.touches[0].clientY : event.clientY;
-      initialX = el.offsetLeft;
-      initialY = el.offsetTop;
-      document.addEventListener('mousemove', drag);
-      document.addEventListener('mouseup', stopDrag);
-      document.addEventListener('touchmove', drag);
-      document.addEventListener('touchend', stopDrag);
-    }
-      
-    function drag(event) {
-      let clientX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
-      let clientY = event.type.includes('touch') ? event.touches[0].clientY : event.clientY;
-      
-      let deltaX = clientX - startX;
-      let deltaY = clientY - startY;
-      
-      el.style.left = `${initialX + deltaX}px`;
-      el.style.top = `${initialY + deltaY}px`;
-    }
-    
-    function stopDrag() {
-      document.removeEventListener('mousemove', drag);
-      document.removeEventListener('mouseup', stopDrag);
-      document.removeEventListener('touchmove', drag);
-      document.removeEventListener('touchend', stopDrag);
-    }
-    
-    el.addEventListener('mousedown', startDrag);
-    el.addEventListener('touchstart', startDrag);
-  }
+      function dragElement(el) {
+        let startX, startY, initialX, initialY;
 
-  function enableEditing(el) {
-    function startEditing() {
-      el.contentEditable = true;
-      el.focus();
-    }
+        function startDrag(event) {
+          event.preventDefault();
+          startX = event.type.includes("touch")
+            ? event.touches[0].clientX
+            : event.clientX;
+          startY = event.type.includes("touch")
+            ? event.touches[0].clientY
+            : event.clientY;
+          initialX = el.offsetLeft;
+          initialY = el.offsetTop;
+          document.addEventListener("mousemove", drag);
+          document.addEventListener("mouseup", stopDrag);
+          document.addEventListener("touchmove", drag);
+          document.addEventListener("touchend", stopDrag);
+        }
 
-    function stopEditing() {
-      el.contentEditable = false;
-    }
+        function drag(event) {
+          let clientX = event.type.includes("touch")
+            ? event.touches[0].clientX
+            : event.clientX;
+          let clientY = event.type.includes("touch")
+            ? event.touches[0].clientY
+            : event.clientY;
 
-    el.addEventListener('dblclick', startEditing);
-    el.addEventListener('touchstart', startEditing, { passive: true }); // يعمل عند اللمس على الهاتف
-    el.addEventListener('click', startEditing);
+          let deltaX = clientX - startX;
+          let deltaY = clientY - startY;
 
-    el.addEventListener('blur', stopEditing);
-  }
+          el.style.left = `${initialX + deltaX}px`;
+          el.style.top = `${initialY + deltaY}px`;
+        }
 
-  function toggleFontDropdown() {
-    const fontDropdown = document.getElementById('fontDropdown');
-    fontDropdown.style.display = fontDropdown.style.display === 'flex' ? 'none' : 'flex';
-  }
+        function stopDrag() {
+          document.removeEventListener("mousemove", drag);
+          document.removeEventListener("mouseup", stopDrag);
+          document.removeEventListener("touchmove", drag);
+          document.removeEventListener("touchend", stopDrag);
+        }
 
-  function changeFont(font) {
-    const textElements = document.querySelectorAll('.textbox');
-    textElements.forEach(el => {
-      el.style.fontFamily = font;
-    });
-    toggleFontDropdown();
-  }
+        el.addEventListener("mousedown", startDrag);
+        el.addEventListener("touchstart", startDrag);
+      }
 
-  document.addEventListener("contextmenu", function(event) {
-      event.preventDefault(); // Prevents scrolling down on spacebar press
-      document.querySelectorAll("button").forEach(button => {
-        button.style.display = button.style.display === "none" ? "block" : "none";
-    });
-  });
-  function saveContainerAsImage() {
-    document.querySelectorAll("button").forEach(button => {
-      button.style.display = button.style.display === "none" ? "block" : "none";
-    });
-    html2canvas(document.getElementById("storyContainer"), {
-      useCORS: true,  // Allows cross-origin images
-      allowTaint: false,  // Prevents tainting from untrusted sources
-      backgroundColor: null // Preserves transparency if needed
-    }).then(canvas => {
-      let link = document.createElement("a");
-      link.download = "screenshot.jpg";  // Set file name
-      link.href = canvas.toDataURL("image/jpeg");  // Convert to JPG
-      link.click();  // Trigger download
-    }).catch(error => {
-        console.error("Error capturing image:", error);
-    });
-  }
+      function enableEditing(el) {
+        function startEditing() {
+          el.contentEditable = true;
+          el.focus();
+        }
 
-  document.getElementById("storyContainer").addEventListener("dblclick", saveContainerAsImage);
+        function stopEditing() {
+          el.contentEditable = false;
+        }
 
-  function toggleCustomBgPopup() {
-  const popup = document.getElementById('customBgPopup');
-  popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
-}
+        el.addEventListener("dblclick", startEditing);
+        el.addEventListener("touchstart", startEditing, { passive: true }); // يعمل عند اللمس على الهاتف
+        el.addEventListener("click", startEditing);
 
-function setCustomBackground() {
-  const input = document.getElementById('imgurUrlInput').value.trim();
-  const bgMovable = document.getElementById('bgMovable');
+        el.addEventListener("blur", stopEditing);
+      }
 
-  if (input.startsWith("http") && (input.includes("imgur.com") || input.includes(".jpg") || input.includes(".png"))) {
-    bgMovable.style.backgroundImage = `url('${input}')`;
-    toggleCustomBgPopup(); // Hide popup
-  } else {
-    alert("Please enter a valid Imgur image URL!");
-  }
-}
+      function toggleFontDropdown() {
+        const fontDropdown = document.getElementById("fontDropdown");
+        fontDropdown.style.display =
+          fontDropdown.style.display === "flex" ? "none" : "flex";
+      }
 
-function setCustomBackground() {
-  const input = document.getElementById('imgurUrlInput').value.trim();
-  const bgMovable = document.getElementById('bgMovable');
+      function changeFont(font) {
+        const textElements = document.querySelectorAll(".textbox");
+        textElements.forEach((el) => {
+          el.style.fontFamily = font;
+        });
+        toggleFontDropdown();
+      }
 
-  if (input.startsWith("http") && (input.includes("imgur.com") || input.includes(".jpg") || input.includes(".png"))) {
-    bgMovable.style.backgroundImage = `url('${input}')`;
-    toggleCustomBgPopup(); // Hide popup
-  } else {
-    alert("Please enter a valid Imgur image URL!");
-  }
-}
+      document.addEventListener("contextmenu", function (event) {
+        event.preventDefault(); // Prevents scrolling down on spacebar press
+        document.querySelectorAll("button").forEach((button) => {
+          if (!button.classList.contains("saveBtn")) {
+            button.style.display =
+              button.style.display === "none" ? "block" : "none";
+          }
+        });
+      });
+      function saveContainerAsImage() {
+        document.querySelectorAll("button").forEach((button) => {
+          if (!button.classList.contains("saveBtn")) {
+            button.style.display = "none";
+          }
+        });
+        html2canvas(document.getElementById("storyContainer"), {
+          useCORS: true, // Allows cross-origin images
+          allowTaint: false, // Prevents tainting from untrusted sources
+          backgroundColor: null, // Preserves transparency if needed
+        })
+          .then((canvas) => {
+            let link = document.createElement("a");
+            link.download = "screenshot.jpg"; // Set file name
+            link.href = canvas.toDataURL("image/jpeg"); // Convert to JPG
+            link.click(); // Trigger download
+          })
+          .catch((error) => {
+            console.error("Error capturing image:", error);
+          });
+      }
 
-// Make background draggable
-function enableBgDragging() {
-  const bg = document.getElementById('bgMovable');
-  let startX, startY, initialX, initialY;
+      document
+        .getElementById("save-img-btn")
+        .addEventListener("click", saveContainerAsImage);
 
-  function startDrag(event) {
-    event.preventDefault();
-    startX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
-    startY = event.type.includes('touch') ? event.touches[0].clientY : event.clientY;
-    initialX = parseInt(bg.style.backgroundPositionX) || 0;
-    initialY = parseInt(bg.style.backgroundPositionY) || 0;
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', stopDrag);
-    document.addEventListener('touchmove', drag);
-    document.addEventListener('touchend', stopDrag);
-  }
+      function toggleCustomBgPopup() {
+        const popup = document.getElementById("customBgPopup");
+        popup.style.display = popup.style.display === "flex" ? "none" : "flex";
+      }
 
-  function drag(event) {
-    let clientX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
-    let clientY = event.type.includes('touch') ? event.touches[0].clientY : event.clientY;
+      function setCustomBackground() {
+        const input = document.getElementById("imgurUrlInput").value.trim();
+        const bgMovable = document.getElementById("bgMovable");
 
-    let deltaX = clientX - startX;
-    let deltaY = clientY - startY;
+        if (
+          input.startsWith("http") &&
+          (input.includes("imgur.com") ||
+            input.includes(".jpg") ||
+            input.includes(".png"))
+        ) {
+          bgMovable.style.backgroundImage = `url('${input}')`;
+          toggleCustomBgPopup(); // Hide popup
+        } else {
+          alert("Please enter a valid Imgur image URL!");
+        }
+      }
 
-    bg.style.backgroundPositionX = `${initialX + deltaX}px`;
-    bg.style.backgroundPositionY = `${initialY + deltaY}px`;
-  }
+      // Make background draggable
+      function enableBgDragging() {
+        const bg = document.getElementById("bgMovable");
+        let startX, startY, initialX, initialY;
 
-  function stopDrag() {
-    document.removeEventListener('mousemove', drag);
-    document.removeEventListener('mouseup', stopDrag);
-    document.removeEventListener('touchmove', drag);
-    document.removeEventListener('touchend', stopDrag);
-  }
+        function startDrag(event) {
+          event.preventDefault();
+          startX = event.type.includes("touch")
+            ? event.touches[0].clientX
+            : event.clientX;
+          startY = event.type.includes("touch")
+            ? event.touches[0].clientY
+            : event.clientY;
+          initialX = parseInt(bg.style.backgroundPositionX) || 0;
+          initialY = parseInt(bg.style.backgroundPositionY) || 0;
+          document.addEventListener("mousemove", drag);
+          document.addEventListener("mouseup", stopDrag);
+          document.addEventListener("touchmove", drag);
+          document.addEventListener("touchend", stopDrag);
+        }
 
-  bg.addEventListener('mousedown', startDrag);
-  bg.addEventListener('touchstart', startDrag);
-}
+        function drag(event) {
+          let clientX = event.type.includes("touch")
+            ? event.touches[0].clientX
+            : event.clientX;
+          let clientY = event.type.includes("touch")
+            ? event.touches[0].clientY
+            : event.clientY;
 
-// Call function to activate dragging
-enableBgDragging();
+          let deltaX = clientX - startX;
+          let deltaY = clientY - startY;
 
+          bg.style.backgroundPositionX = `${initialX + deltaX}px`;
+          bg.style.backgroundPositionY = `${initialY + deltaY}px`;
+        }
 
-  </script>
-</body>
+        function stopDrag() {
+          document.removeEventListener("mousemove", drag);
+          document.removeEventListener("mouseup", stopDrag);
+          document.removeEventListener("touchmove", drag);
+          document.removeEventListener("touchend", stopDrag);
+        }
+
+        bg.addEventListener("mousedown", startDrag);
+        bg.addEventListener("touchstart", startDrag);
+      }
+
+      // Call function to activate dragging
+      enableBgDragging();
+
+      let scale = 1;
+      const bgMovable = document.getElementById("bgMovable");
+      function zoomBackground(event) {
+        event.preventDefault();
+        const zoomFactor = 0.1;
+        scale += event.deltaY < 0 ? zoomFactor : -zoomFactor;
+        scale = Math.max(0.5, Math.min(3, scale));
+        bgMovable.style.transform = `scale(${scale})`;
+      }
+      bgMovable.addEventListener("wheel", zoomBackground);
+      let touchStartDistance = 0;
+      function getDistance(touches) {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+      }
+      bgMovable.addEventListener("touchstart", (event) => {
+        if (event.touches.length === 2) {
+          touchStartDistance = getDistance(event.touches);
+        }
+      });
+      bgMovable.addEventListener("touchmove", (event) => {
+        if (event.touches.length === 2) {
+          event.preventDefault();
+          const newDistance = getDistance(event.touches);
+          const zoomFactor = 0.005;
+          scale *= 1 + (newDistance - touchStartDistance) * zoomFactor;
+          scale = Math.max(0.5, Math.min(3, scale));
+          bgMovable.style.transform = `scale(${scale})`;
+          touchStartDistance = newDistance;
+        }
+      });
+    </script>
+  </body>
 </html>
