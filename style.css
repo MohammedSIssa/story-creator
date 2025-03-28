@@ -1,99 +1,69 @@
-@font-face {
-  font-family: 'ReadexPro';
-  src: url('./ReadexPro.ttf');
-  font-style: normal;
-	font-weight: 300 700;
-	font-stretch: 100%;
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
 
-@font-face {
-  font-family: 'Rubik';
-  src: url('./Rubik.ttf');
-  font-style: normal;
-  font-weight: 300 700;
-}
-
-.font-family-btn {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.font-dropdown {
-  position: absolute;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  display: none;
-  flex-direction: column;
-  border-radius: 8px;
-  z-index: 100;
-}
-
-.font-dropdown button {
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  margin: 0;
   background: transparent;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
+  padding: 20px;
+}
+.container {
+  height: 90dvh;
+  min-height: 550px;
+  width: auto;
+  aspect-ratio: 9 / 16;
+  background: white;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  background-position: center !important;
+  background-size: cover !important;
+  object-fit: cover !important;
+}
+
+.textbox {
+  direction: rtl;
+  padding: 10px 22px !important;
   text-align: center;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.33);
   color: white;
-  font-size: 16px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: grab;
+  min-width: 100px;
+  max-width: 90% !important;
+  min-height: 20px;
+  font-family: "Rubik", sans-serif;
+}
+
+#bgMovable {
+  position: absolute;
   width: 100%;
-  max-height: 50px;
-  transition: background 0.3s ease;
-  border-bottom: 1px solid rgba(222, 222, 222, 0.6);
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: grab;
+  user-select: none;
+  border-radius: 12px;
+}
+#bgMovable:active {
+  cursor: grabbing;
 }
 
-.font-dropdown button:last-child {
-  border: 0;
-}
-
-.font-dropdown button:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Style for the custom background popup */
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  padding: 15px;
-  border-radius: 10px;
-  display: none; /* Hidden by default */
-  flex-direction: column;
-  gap: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.popup input {
-  padding: 8px;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  text-align: center;
-  width: 200px;
-}
-
-.popup button {
-  border: none;
-  background: rgba(255, 255, 255, 0.3);
-  padding: 8px 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: pretty;
+  line-height: 1.5;
 }

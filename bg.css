@@ -1,0 +1,22 @@
+.bg-default {
+  background: black;
+}
+.bg-pink {
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+}
+.bg-blue {
+  background: url('https://i.imgur.com/phsw8LS.jpg');
+}
+.bg-light {
+  background: #eee;
+  color: #222;
+}
+.bg-sky {
+  background: url("https://i.imgur.com/1JMKidV.jpeg");
+}
+.bg-img {
+  background: url("./image.jpg");
+}
+.bg-watermelon {
+  background: url("https://i.imgur.com/IMvmQMM.jpeg");
+}

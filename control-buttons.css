@@ -1,0 +1,184 @@
+/* Global Button Styles Start */
+
+button {
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 10px rgba(1, 1, 1, 0.5));
+  border: 0;
+  outline: 0;
+  font-family: "Rubik", sans-serif;
+}
+
+button img {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+/* Global Button Styles End */
+
+/* Text Button Styling Start */
+
+button.add-text {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 0;
+}
+
+.dropdown {
+  position: absolute;
+  top: 70px;
+  left: 10px;
+  background: white;
+  border: 1px solid #ccc;
+  display: none;
+  flex-direction: column;
+}
+.dropdown button {
+  background: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Text Button Styling End */
+
+/*  Font Picker Styling Start */
+
+.font-family-btn {
+  position: absolute;
+  top: 10px;
+  left: 67%;
+  transform: translateX(-67%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.font-dropdown {
+  position: absolute;
+  top: 70px;
+  left: 70%;
+  transform: translateX(-70%);
+  width: 200px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: none;
+  flex-direction: column;
+  border-radius: 8px;
+  z-index: 100;
+}
+
+.font-dropdown button {
+  background: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  width: 100%;
+  max-height: 50px;
+  transition: background 0.3s ease;
+  border-bottom: 1px solid rgba(222, 222, 222, 0.6);
+}
+
+.font-dropdown button:last-child {
+  border: 0;
+}
+
+.font-dropdown button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/*  Font Picker Styling End */
+
+/* Background Picker Styling Start */
+
+.change-bg {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.bg-dropdown {
+  position: absolute;
+  width: 50px;
+  top: 70px;
+  right: 10px;
+  background: white;
+  border: 1px solid #ccc;
+  display: none;
+  flex-direction: column;
+}
+.bg-dropdown button {
+  background: none;
+  border: none;
+  padding: 2px 5px;
+  cursor: pointer;
+  text-align: left;
+  max-height: 30px;
+}
+.dropdown,
+.bg-dropdown {
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+.dropdown button,
+.bg-dropdown button {
+  background: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  width: 100%;
+  transition: background 0.3s ease;
+  border-bottom: 1px solid rgba(222, 222, 222, 0.6);
+}
+.dropdown button:last-child,
+.bg-dropdown button:last-child {
+  border: 0;
+}
+.dropdown button:hover,
+.bg-dropdown button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Background Picker Styling End */
+
+/* Center Content Button Styling Start */
+
+
+button.center-x {
+  position: absolute;
+  top: 10px;
+  left: 33%;
+  transform: translateX(-33%);
+  top: 18px !important;
+}
+
+/* Center Content Button Stying End */

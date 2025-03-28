@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'ReadexPro';
+  src: url('./ReadexPro.ttf');
+  font-style: normal;
+	font-weight: 300 700;
+	font-stretch: 100%;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('./Rubik.ttf');
+  font-style: normal;
+  font-weight: 300 700;
+}
