@@ -9,7 +9,7 @@ body {
   align-items: center;
   height: 100dvh;
   margin: 0;
-  background: transparent;
+  background: black;
   padding: 20px;
 }
 .container {
@@ -36,11 +36,12 @@ body {
   padding: 5px;
   border-radius: 5px;
   cursor: grab;
-  min-width: 100px;
+  width: fit-content;
   max-width: 90% !important;
   min-height: 20px;
   font-family: "Rubik", sans-serif;
 }
+
 
 #bgMovable {
   position: absolute;
@@ -66,4 +67,12 @@ h5,
 h6 {
   text-wrap: pretty;
   line-height: 1.5;
+}
+
+.bg-light .textbox {
+  color: black;
+  background-color: transparent;
+}
+.bg-pink .textbox {
+  background-color: rgba(0, 0, 0, 0.55);
 }

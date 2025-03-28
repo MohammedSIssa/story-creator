@@ -179,6 +179,7 @@ button.center-x {
   left: 33%;
   transform: translateX(-33%);
   top: 18px !important;
+  filter: drop-shadow(0 4px 10px rgba(1, 1, 1, 0.75));
 }
 
 /* Center Content Button Stying End */

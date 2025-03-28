@@ -1,22 +1,12 @@
-const backgrounds = [
-  { className: "bg-light" },
-  { className: "bg-pink" },
-  { className: "bg-blue" },
-  { className: "bg-default" },
-  { className: "bg-watermelon" },
-  { className: "bg-sky" },
-  { className: "" },
-];
-
 function toggleBgDropdown() {
   const bgDropdown = document.getElementById("bgDropdown");
   bgDropdown.style.display =
     bgDropdown.style.display === "flex" ? "none" : "flex";
 }
 
-function changeBackground(index) {
+function changeBackground(className) {
   const container = document.getElementById("storyContainer");
-  container.className = `container ${backgrounds[index].className}`;
+  container.className = `container ${className}`;
   toggleBgDropdown();
 }
 
@@ -241,12 +231,22 @@ function pasteContent() {
 }
 
 function centerText() {
+  const container = document.querySelector('.container');
+  if (!container) return;
+
+  const containerWidth = container.clientWidth;
   const textboxes = document.querySelectorAll('.textbox');
-  textboxes.forEach(textbox => {
-      textbox.style.left = '50%';
-      textbox.style.transform = 'translateX(-50%)';
-    }
-  );
+
+  requestAnimationFrame(() => {
+      textboxes.forEach(textbox => {
+          const textboxWidth = textbox.clientWidth;
+
+          textbox.style.left = '50%';
+          textbox.style.transform = 'translateX(-50%)';
+
+          textbox.style.width = textboxWidth + 'px';
+      });
+  });
 }
 
-document.querySelector('button.center-x').addEventListener('click', () => {centerText() })
+document.querySelector('button.center-x').addEventListener('click', () => {centerText()})

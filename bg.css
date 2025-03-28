@@ -1,22 +1,22 @@
-.bg-default {
+.bg-dark {
   background: black;
 }
 .bg-pink {
   background: linear-gradient(45deg, #ff9a9e, #fad0c4);
 }
 .bg-blue {
-  background: url('https://i.imgur.com/phsw8LS.jpg');
+  background: url('https://i.imgur.com/phsw8LS.jpg'), url('./blue.jpg');
 }
 .bg-light {
   background: #eee;
   color: #222;
 }
 .bg-sky {
-  background: url("https://i.imgur.com/1JMKidV.jpeg");
+  background: url("https://i.imgur.com/1JMKidV.jpeg"), url('./sky.jpg');
 }
 .bg-img {
   background: url("./image.jpg");
 }
 .bg-watermelon {
-  background: url("https://i.imgur.com/IMvmQMM.jpeg");
+  background: url("https://i.imgur.com/IMvmQMM.jpeg"), url('./watermelon.jpg');
 }
