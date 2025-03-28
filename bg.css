@@ -7,12 +7,19 @@
 .bg-pink-d {
   background: url("https://i.imgur.com/Hm5csGs.jpeg"), url("pink-day.jpeg");
 }
+.bg-pink-d .textbox {
+  background-color: rgba(0, 0, 0, 0.549);
+}
 .bg-blue {
   background: url("https://i.imgur.com/phsw8LS.jpg"), url("./blue.jpg");
 }
 .bg-light {
   background: #eee;
   color: #222;
+}
+.bg-light .textbox {
+  color: black;
+  background-color: transparent;
 }
 .bg-sky {
   background: url("https://i.imgur.com/1JMKidV.jpeg"), url("./sky.jpg");
