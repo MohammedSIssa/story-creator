@@ -6,7 +6,12 @@ function toggleBgDropdown() {
 
 function changeBackground(className) {
   const container = document.getElementById("storyContainer");
+  const bgMovable = document.getElementById("bgMovable");
   container.className = `container ${className}`;
+  bgMovable.className = className
+  bgMovable.style['background-position'] = 'center';
+  bgMovable.style['background-size'] = 'cover';
+  bgMovable.style.transform = 'scale(1.0)'
   toggleBgDropdown();
 }
 
@@ -234,7 +239,6 @@ function centerText() {
   const container = document.querySelector('.container');
   if (!container) return;
 
-  const containerWidth = container.clientWidth;
   const textboxes = document.querySelectorAll('.textbox');
 
   requestAnimationFrame(() => {
