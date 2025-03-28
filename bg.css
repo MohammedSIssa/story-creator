@@ -5,27 +5,28 @@
   background: linear-gradient(45deg, #ff9a9e, #fad0c4);
 }
 .bg-pink-d {
-  background: url('https://i.imgur.com/Hm5csGs.jpeg'), url('pink-day.jpeg');
+  background: url("https://i.imgur.com/Hm5csGs.jpeg"), url("pink-day.jpeg");
 }
 .bg-blue {
-  background: url('https://i.imgur.com/phsw8LS.jpg'), url('./blue.jpg');
+  background: url("https://i.imgur.com/phsw8LS.jpg"), url("./blue.jpg");
 }
 .bg-light {
   background: #eee;
   color: #222;
 }
 .bg-sky {
-  background: url("https://i.imgur.com/1JMKidV.jpeg"), url('./sky.jpg');
+  background: url("https://i.imgur.com/1JMKidV.jpeg"), url("./sky.jpg");
 }
 .bg-img {
   background: url("./image.jpg");
 }
 .bg-watermelon {
-  background: url("https://i.imgur.com/IMvmQMM.jpeg"), url('./watermelon.jpg');
+  background: url("https://i.imgur.com/IMvmQMM.jpeg"), url("./watermelon.jpg");
 }
 .bg-purple-n {
-  background: url('https://i.imgur.com/5rc48sA.jpeg'), url('./purple-night.jpeg');
+  background: url("https://i.imgur.com/5rc48sA.jpeg"),
+    url("./purple-night.jpeg");
 }
 .bg-purple-d {
-  background: url('https://i.imgur.com/9UqVKMf.jpeg'), url('./purple-day.jpeg');
+  background: url("https://i.imgur.com/9UqVKMf.jpeg"), url("./purple-day.jpeg");
 }

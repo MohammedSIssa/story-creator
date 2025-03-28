@@ -8,10 +8,10 @@ function changeBackground(className) {
   const container = document.getElementById("storyContainer");
   const bgMovable = document.getElementById("bgMovable");
   container.className = `container ${className}`;
-  bgMovable.className = className
-  bgMovable.style['background-position'] = 'center';
-  bgMovable.style['background-size'] = 'cover';
-  bgMovable.style.transform = 'scale(1.0)'
+  bgMovable.className = className;
+  bgMovable.style["background-position"] = "center";
+  bgMovable.style["background-size"] = "cover";
+  bgMovable.style.transform = "scale(1.0)";
   toggleBgDropdown();
 }
 
@@ -232,25 +232,27 @@ function pasteContent() {
     imgInput.value = text;
     setCustomBackground();
     toggleBgDropdown();
-  })
-}
-
-function centerText() {
-  const container = document.querySelector('.container');
-  if (!container) return;
-
-  const textboxes = document.querySelectorAll('.textbox');
-
-  requestAnimationFrame(() => {
-      textboxes.forEach(textbox => {
-          const textboxWidth = textbox.clientWidth;
-
-          textbox.style.left = '50%';
-          textbox.style.transform = 'translateX(-50%)';
-
-          textbox.style.width = textboxWidth + 'px';
-      });
   });
 }
 
-document.querySelector('button.center-x').addEventListener('click', () => {centerText()})
+function centerText() {
+  const container = document.querySelector(".container");
+  if (!container) return;
+
+  const textboxes = document.querySelectorAll(".textbox");
+
+  requestAnimationFrame(() => {
+    textboxes.forEach((textbox) => {
+      const textboxWidth = textbox.clientWidth;
+
+      textbox.style.left = "50%";
+      textbox.style.transform = "translateX(-50%)";
+
+      textbox.style.width = textboxWidth + "px";
+    });
+  });
+}
+
+document.querySelector("button.center-x").addEventListener("click", () => {
+  centerText();
+});
