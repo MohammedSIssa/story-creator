@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Story Creator</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="popup.css">
-    <link rel="stylesheet" href="bg.css">
-    <link rel="stylesheet" href="control-buttons.css">
-    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/popup.css">
+    <link rel="stylesheet" href="./styles/bg.css">
+    <link rel="stylesheet" href="./styles/control-buttons.css">
+    <link rel="stylesheet" href="./styles/fonts.css">
   </head>
   <body>
     
     <div class="container bg-light" id="storyContainer">
-      <button class="center-x" style="background-color: transparent; z-index: 999;"><img src="center.svg" alt=""></button>
+      <button class="center-x" style="background-color: transparent; z-index: 999;"><img src="./svg/center.svg" alt=""></button>
       <div id="bgMovable"></div>
       <div id="customBgPopup" class="popup">
         <input
@@ -22,7 +22,7 @@
           id="imgurUrlInput"
           placeholder="Enter Imgur Image URL"
         />
-        <button onclick="pasteContent()"><img src="./paste.svg" alt=""></button>
+        <button onclick="pasteContent()"><img src="./svg/paste.svg" alt=""></button>
         <button onclick="setCustomBackground()">Apply</button>
         <button onclick="toggleCustomBgPopup()">Close</button>
       </div>
@@ -31,7 +31,7 @@
         onclick="toggleDropdown()"
         style="font-size: 24px; font-family: system-ui, sans-serif !important"
       >
-        <img src="./text.svg" alt="" />
+        <img src="./svg/text.svg" alt="" />
       </button>
       <div class="dropdown" id="dropdown">
         <button onclick="addTextBox('h1')" style="font-size: 32px; font-weight: 500;">نص 1</button>
@@ -43,7 +43,7 @@
         <button onclick="addTextBox('p')" style="font-size: 10px; font-weight: 500;">نص 7</button>
       </div>
       <button class="change-bg" onclick="toggleBgDropdown()">
-        <img src="./img.svg" alt="" />
+        <img src="./svg/img.svg" alt="" />
       </button>
       <div class="bg-dropdown" id="bgDropdown" style="width: fit-content">
         <button onclick="changeBackground('bg-light')">       🤍    </button>
@@ -59,7 +59,7 @@
         <button onclick="toggleCustomBgPopup()">             Custom </button>
       </div>
       <button class="font-family-btn" onclick="toggleFontDropdown()">
-        <img src="./font.svg" alt="" />
+        <img src="./svg/font.svg" alt="" />
       </button>
       <div class="font-dropdown" id="fontDropdown">
         <button
