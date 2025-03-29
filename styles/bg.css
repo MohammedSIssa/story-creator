@@ -25,7 +25,7 @@
   background: url("https://i.imgur.com/1JMKidV.jpeg"), url("../images/sky.jpg");
 }
 .bg-image {
-  background: url("./image.jpg");
+  background: url("../images/image.jpg");
 }
 .bg-watermelon {
   background: url("https://i.imgur.com/IMvmQMM.jpeg"), url("../images/watermelon.jpg");
