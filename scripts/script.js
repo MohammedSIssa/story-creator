@@ -29,7 +29,8 @@ function addTextBox(tag) {
   const textBox = document.createElement(tag);
   textBox.classList.add("textbox");
   textBox.innerText = isMobile() ? "" : "نص جديد";
-  textBox.style.left = "5%";
+  textBox.style.left = "10%";
+  textBox.style.transform = "translateX(-10%)"
   textBox.style.top = "80px";
   container.appendChild(textBox);
   toggleDropdown();
