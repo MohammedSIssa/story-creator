@@ -54,3 +54,10 @@
   /* url('https://i.imgur.com/Nx85hP6.jpg'), */
   background:  url('../images/honey.jpeg');
 }
+.bg-orange {
+  background: url('../images/orange.jpg');
+}
+.bg-orange .textbox {
+  background-color: #ffc786;
+  color: black;
+}
