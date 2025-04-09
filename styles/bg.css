@@ -1,17 +1,19 @@
 .bg-dark {
-  background: black;
+  background: url('../images/black.jpeg');
 }
 .bg-pink-n {
   background: linear-gradient(45deg, #ff9a9e, #fad0c4);
 }
 .bg-pink-d {
-  background: url("https://i.imgur.com/Hm5csGs.jpeg"), url("../images/pink-day.jpeg");
+  /*  url("https://i.imgur.com/Hm5csGs.jpeg"), */
+  background: url("../images/pink-day.jpeg");
 }
 .bg-pink-d .textbox {
   background-color: rgba(0, 0, 0, 0.549);
 }
 .bg-blue {
-  background: url("https://i.imgur.com/Zb5P7ro.jpg"), url("../images/blue.jpeg");
+  /* url("https://i.imgur.com/Zb5P7ro.jpg"),  */
+  background: url("../images/blue.jpeg");
 }
 .bg-light {
   background: #eee;
@@ -22,27 +24,33 @@
   background-color: rgba(1,1,1,0.1);
 }
 .bg-sky {
-  background: url("https://i.imgur.com/1JMKidV.jpeg"), url("../images/sky.jpg");
+  /*  */
+  background:  url("../images/sky.jpg");
 }
 .bg-image {
   background: url("../images/image.jpg");
 }
 .bg-watermelon {
-  background: url("https://i.imgur.com/IMvmQMM.jpeg"), url("../images/watermelon.jpg");
+  /*  url("https://i.imgur.com/IMvmQMM.jpeg"), */
+  background: url("../images/watermelon.jpg");
 }
 .bg-purple-n {
-  background: url("https://i.imgur.com/5rc48sA.jpeg"),
-    url("./purple-night.jpeg");
+  /* url("https://i.imgur.com/5rc48sA.jpeg"), */
+  background: url("../images/purple-night.jpeg");
 }
 .bg-purple-d {
-  background: url("https://i.imgur.com/9UqVKMf.jpeg"), url("../images/purple-day.jpeg");
+  /* url("https://i.imgur.com/9UqVKMf.jpeg"), */
+  background:  url("../images/purple-day.jpeg");
 }
 .bg-red-black {
-  background: url('https://i.imgur.com/u5Qrp7p.jpeg'), url('../images/red-black.jpeg');
+  /*  url('https://i.imgur.com/u5Qrp7p.jpeg'), */
+  background: url('../images/red-black.jpg');
 }
 .bg-blue-purple {
-  background: url('https://i.imgur.com/4MuSNiv.jpg'), url('../images/blue-purple.jpeg');
+  /* url('https://i.imgur.com/4MuSNiv.jpg'),  */
+  background: url('../images/blue-purple.jpeg');
 }
 .bg-honey {
-  background: url('https://i.imgur.com/Nx85hP6.jpg'), url('../images/honey.jpeg');
+  /* url('https://i.imgur.com/Nx85hP6.jpg'), */
+  background:  url('../images/honey.jpeg');
 }
