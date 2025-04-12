@@ -41,6 +41,7 @@ body {
   max-width: 90% !important;
   min-height: 20px;
   font-family: "Rubik", sans-serif;
+  z-index: 999;
 }
 
 #bgMovable {
@@ -53,6 +54,22 @@ body {
   cursor: grab;
   user-select: none;
   border-radius: 12px;
+}
+.bg-blur {
+  position: absolute;
+  z-index: 1;
+  top: -10%;
+  left: -10%;
+  width: 125%;
+  height: 125%;
+  object-fit: cover;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  filter: blur(25px) brightness(0.45) !important;
+}
+#bgMovable {
+  z-index: 2;
 }
 #bgMovable:active {
   cursor: grabbing;

@@ -28,7 +28,7 @@
   background:  url("../images/sky.jpg");
 }
 .bg-image {
-  background: url("../images/image.jpg");
+  background: url("../images/image.jpg"), url('../images/image.png');
 }
 .bg-watermelon {
   /*  url("https://i.imgur.com/IMvmQMM.jpeg"), */
@@ -46,9 +46,16 @@
   /*  url('https://i.imgur.com/u5Qrp7p.jpeg'), */
   background: url('../images/red-black.jpg');
 }
+.bg-red-black .textbox {
+  background-color: #e3e3e3;
+  color: #242424;
+}
 .bg-blue-purple {
   /* url('https://i.imgur.com/4MuSNiv.jpg'),  */
   background: url('../images/blue-purple.jpeg');
+}
+.bg-blue-purple .textbox {
+  background-color: rgba(0,0,0,0.5);
 }
 .bg-honey {
   /* url('https://i.imgur.com/Nx85hP6.jpg'), */

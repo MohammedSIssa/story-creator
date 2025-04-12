@@ -7,8 +7,10 @@ function toggleBgDropdown() {
 function changeBackground(className) {
   const container = document.getElementById("storyContainer");
   const bgMovable = document.getElementById("bgMovable");
+  const blurryBG = document.querySelector('.bg-blur')
   container.className = `container ${className}`;
   bgMovable.className = className;
+  blurryBG.className = `bg-blur ${className}`
   bgMovable.style["background-position"] = "center";
   bgMovable.style["background-size"] = "cover";
   bgMovable.style.transform = "scale(1.0)";
@@ -130,20 +132,9 @@ function toggleCustomBgPopup() {
 function setCustomBackground() {
   const input = document.getElementById("imgurUrlInput").value.trim();
   const bgMovable = document.getElementById("bgMovable");
-
-  if (
-    input.startsWith("http") &&
-    (input.includes("imgur.com") ||
-      input.includes(".jpg") ||
-      input.includes(".png"))
-  ) {
-    bgMovable.style.backgroundImage = `url('${input}')`;
-    toggleCustomBgPopup(); // Hide popup
-  } else {
-    alert("Please enter a valid Imgur image URL!");
-  }
+  bgMovable.style.backgroundImage = `url('${input}')`;
+  toggleCustomBgPopup(); // Hide popup
 }
-
 // Make background draggable
 function enableBgDragging() {
   const bg = document.getElementById("bgMovable");
@@ -198,7 +189,7 @@ let scale = 1;
 const bgMovable = document.getElementById("bgMovable");
 function zoomBackground(event) {
   event.preventDefault();
-  const zoomFactor = 0.1;
+  const zoomFactor = 0.05;
   scale += event.deltaY < 0 ? zoomFactor : -zoomFactor;
   scale = Math.max(0.5, Math.min(3, scale));
   bgMovable.style.transform = `scale(${scale})`;
