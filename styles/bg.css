@@ -61,6 +61,9 @@
   /* url('https://i.imgur.com/Nx85hP6.jpg'), */
   background:  url('../images/honey.jpeg');
 }
+.bg-honey .textbox {
+  background-color: rgba(0,0,0,0.7);
+}
 .bg-orange {
   background: url('../images/orange.jpg');
 }
